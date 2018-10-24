@@ -1,0 +1,37 @@
+image: docker:stable
+
+variables:
+  IMAGE: aomitech/spring-cloud-eureka-server
+
+stages:
+- build
+- publish
+
+cache:
+  key: "$CI_PIPELINE_ID"
+  paths:
+  - build/bootScripts
+  - build/libs
+
+编译应用:
+  stage: build
+  image: aomitech/java-compile-deploy-env
+  script:
+  - chmod +x ./gradlew
+  - ./gradlew clean --no-daemon
+  - ./gradlew --no-daemon -q bootDistZip
+  - APP_VERSION=`./gradlew properties --no-daemon -q | grep "^version:" | awk '{print $2}'`
+  - echo $APP_VERSION > build/version
+
+
+发布:
+  stage: publish
+  script:
+  - VERION=`cat build/version`
+  - docker build -t $IMAGE:$VERSION .
+  - docker login -u $AOMI_REPO_USERNAME -p $AOMI_REPO_PASSWORD
+  - docker push $IMAGE:$VERSION
+  - docker tag $IMAGE:$VERSION $IMAGE:latest
+  - docker push $IMAGE:latest
+
+

@@ -1,0 +1,30 @@
+plugins {
+    id "io.franzbecker.gradle-lombok" version "1.14"
+    id 'org.springframework.boot' version '2.0.3.RELEASE' apply false
+}
+
+apply from: 'https://onegit.app/enterprise/public/raw/master/libraries.gradle'
+apply from: 'https://onegit.app/enterprise/public/raw/master/wrapper.gradle'
+apply from: 'https://onegit.app/enterprise/public/raw/master/java.gradle'
+apply from: 'https://onegit.app/enterprise/public/raw/master/idea.gradle'
+
+apply plugin: 'application'
+apply plugin: 'org.springframework.boot'
+
+group 'software.sitb.manager'
+version '1.0.0.RELEASE'
+
+bootJar {
+    launchScript()
+}
+
+repositories {
+    maven { url "${project.'owner.repo'}" }
+    maven { url "${project.'repo'}" }
+    jcenter()
+}
+
+dependencies {
+    compile "org.springframework.cloud:spring-cloud-starter-eureka:1.4.5.RELEASE"
+    compile "org.springframework.cloud:spring-cloud-starter-eureka-server:1.4.5.RELEASE"
+}
