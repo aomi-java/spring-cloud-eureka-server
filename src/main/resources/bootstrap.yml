@@ -3,16 +3,11 @@ spring:
     name: register-server
 
 eureka:
-  server:
-    enable-self-preservation: false
   instance:
     hostname: ${spring.application.name}
   client:
-    register-with-eureka: false
-    fetch-registry: false
     service-url:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
-
 
 logging:
   level:
