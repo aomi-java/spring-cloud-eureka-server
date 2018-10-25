@@ -11,4 +11,3 @@ ADD build/libs $APP_HOME/lib
 ADD k8s-cluster-start.sh /k8s-cluster-start.sh
 RUN chmod +x /k8s-cluster-start.sh
 
-CMD ["/k8s-cluster-start.sh"]
