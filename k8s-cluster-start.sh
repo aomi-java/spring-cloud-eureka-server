@@ -29,7 +29,7 @@ done
 
 ZONE=${ZONE%?}
 
-export RUN_ARGS="--eureka.instance.hostname=${HOSTNAME}.${NAME} --eureka.client.serviceUrl.defaultZone=$ZONE $RUN_ARGS"
+export RUN_ARGS="--eureka.hostname=${HOSTNAME}.${NAME} --eureka.instance.hostname=${HOSTNAME}.${NAME} --eureka.client.serviceUrl.defaultZone=$ZONE $RUN_ARGS"
 
 echo RUN_ARGS=$RUN_ARGS
 
