@@ -24,12 +24,14 @@ ZONE=""
 
 for((i=0;i<REPLICAS;i++));
 do
-    ZONE="${ZONE}http://${NAME}-${i}.${NAME}:1818/eureka/,"
+    ZONE="${ZONE}http://${NAME}-${i}.${NAME}.${NAMESPACE}:1818/eureka/,"
 done
 
 ZONE=${ZONE%?}
 
-export RUN_ARGS="--eureka.hostname=${HOSTNAME}.${NAME} --eureka.instance.hostname=${HOSTNAME}.${NAME} --eureka.client.serviceUrl.defaultZone=$ZONE $RUN_ARGS"
+APP_HOSTNAME="${HOSTNAME}.${NAME}.${NAMESPACE}"
+
+export RUN_ARGS="--eureka.hostname=${APP_HOSTNAME} --eureka.instance.hostname=${APP_HOSTNAME} --eureka.client.serviceUrl.defaultZone=$ZONE $RUN_ARGS"
 
 echo RUN_ARGS=$RUN_ARGS
 
