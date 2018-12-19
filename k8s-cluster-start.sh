@@ -24,7 +24,7 @@ ZONE=""
 
 for((i=0;i<REPLICAS;i++));
 do
-    ZONE="${ZONE}http://${NAME}-${i}.${NAME}.${NAMESPACE}:1818/eureka/,"
+    ZONE="${ZONE}http://${NAME}-${i}.${NAME}.${NAMESPACE}/eureka/,"
 done
 
 ZONE=${ZONE%?}
