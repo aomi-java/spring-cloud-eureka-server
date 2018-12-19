@@ -1,0 +1,6 @@
+task dockerBuild(dependsOn: bootDistZip) {
+    doLast {
+        def name = "aomitech/spring-cloud-eureka-server:${project.version}"
+        println "docker build -t ${name} .".execute().text
+    }
+}

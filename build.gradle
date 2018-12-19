@@ -11,6 +11,8 @@ apply from: 'https://onegit.app/enterprise/public/raw/master/idea.gradle'
 apply plugin: 'application'
 apply plugin: 'org.springframework.boot'
 
+apply from: 'docker.gradle'
+
 group 'software.sitb.manager'
 version '1.0.0.RELEASE'
 
@@ -19,7 +21,6 @@ bootJar {
 }
 
 repositories {
-    maven { url "${project.'owner.repo'}" }
     maven { url "${project.'repo'}" }
     jcenter()
 }
