@@ -38,3 +38,13 @@ the pods number. default `2`
 spring boot app run args. eg: `--eureka.environment=production`
 
 
+#### the `eureka.client.service-url.defaultZone` 
+
+```
+http://${NAME}-${0..REPLICAS}.${NAME}.${NAMESPACE}/eureka
+
+eg:
+http://eureka-server-0.eureka-server.manager/eureka,http://eureka-server-1.eureka-server.manager/eureka,http://eureka-server-2.eureka-server.manager/eureka
+```
+
+
