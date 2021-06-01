@@ -9,7 +9,7 @@ logging:
     com:
       netflix:
         discovery: error
-    software: debug
+    tech: debug
   pattern:
     console: "%clr(%d){blue} [%clr(%-5level){lightgreen}] [%logger{0}] - %msg%n"
     file: "%d [%-5level] [%logger{0}] - %msg%n"

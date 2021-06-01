@@ -1,31 +1,33 @@
 plugins {
-    id "io.franzbecker.gradle-lombok" version "1.14"
-    id 'org.springframework.boot' version '2.0.3.RELEASE' apply false
+    id "io.franzbecker.gradle-lombok" version "2.2"
+    id 'org.springframework.boot' version '2.5.0' apply false
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 }
 
-apply from: 'https://onegit.app/enterprise/public/raw/master/libraries.gradle'
-apply from: 'https://onegit.app/enterprise/public/raw/master/wrapper.gradle'
-apply from: 'https://onegit.app/enterprise/public/raw/master/java.gradle'
-apply from: 'https://onegit.app/enterprise/public/raw/master/idea.gradle'
+group 'tech.aomi.spring.cloud'
+version '2.0.0'
 
-apply plugin: 'application'
-apply plugin: 'org.springframework.boot'
+apply from: 'https://onegit.com/enterprise/public/raw/master/libraries.gradle'
+apply from: 'https://onegit.com/enterprise/public/raw/master/spring-libraries.gradle'
+apply from: 'https://onegit.com/enterprise/public/raw/master/java.gradle'
+apply from: 'https://onegit.com/enterprise/public/raw/master/idea.gradle'
+apply from: 'https://onegit.com/enterprise/public/raw/master/spring-boot-app-build-image.gradle'
 
-apply from: 'docker.gradle'
 
-group 'software.sitb.manager'
-version '1.0.0.RELEASE'
-
-bootJar {
-    launchScript()
-}
 
 repositories {
     maven { url "${project.'repo'}" }
-    jcenter()
+    mavenCentral()
+}
+
+dependencyManagement {
+    imports {
+        mavenBom 'org.springframework.boot:spring-boot-dependencies:2.5.0'
+        mavenBom 'org.springframework.cloud:spring-cloud-dependencies:2020.0.2'
+    }
 }
 
 dependencies {
-    compile "org.springframework.cloud:spring-cloud-starter-eureka:1.4.5.RELEASE"
-    compile "org.springframework.cloud:spring-cloud-starter-eureka-server:1.4.5.RELEASE"
+//    implementation "org.springframework.cloud:spring-cloud-starter-eureka"
+    implementation spring_cloud.eureka_server
 }
